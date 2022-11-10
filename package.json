@@ -17,5 +17,13 @@
     "pg": "^8.8.0",
     "sequelize": "^6.25.5",
     "sequelize-cli": "^6.5.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atrsxvr/negative-vibe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atrsxvr/negative-vibe/issues"
+  },
+  "homepage": "https://github.com/atrsxvr/negative-vibe#readme"
 }

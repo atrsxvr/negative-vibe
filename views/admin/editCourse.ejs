@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Course Name</label>
+          <input type="text" class="form-control" name="name" id="name" value="<%=data.name%>">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Description</label>
+          <input type="text" class="form-control" name="description" id="description" value="<%=data.description%>">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Duration</label>
+          <input type="number" class="form-control" name="duration" id="duration" value="<%=data.duration%>">
+        </div>
+        <div class="mb-3">
+        <p>Category</p>
+        <select name="CategoryId" class="form-control">
+          <option value=1 <%=data.CategoryId===1 ? "checked" : " " %>>Koruptor</option>
+          <option value=2 <%=data.CategoryId===2 ? "checked" : " " %>>Mafia Pasar</option>
+          <option value=3 <%=data.CategoryId===3 ? "checked" : " " %>>Preman Laut</option>
+          <option value=4 <%=data.CategoryId===4 ? "checked" : " " %>>Preman Kampung</option>
+        </select>
+        <div class="align-content-end col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
+    </form>
+</body>
+</html>
