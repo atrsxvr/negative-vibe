@@ -22,7 +22,15 @@
           <label for="exampleFormControlInput1" class="form-label">Duration</label>
           <input type="number" class="form-control" name="duration" id="duration" value="<%=data.duration%>">
         </div>
-        
+        <div class="mb-3">
+            <p>Category</p>
+            <select name="CategoryId" class="form-control">
+              <option value=1 <%=data.CategoryId===1 ? "checked" : " " %>>Koruptor</option>
+              <option value=2 <%=data.CategoryId===2 ? "checked" : " " %>>Mafia Pasar</option>
+              <option value=3 <%=data.CategoryId===3 ? "checked" : " " %>>Preman Laut</option>
+              <option value=4 <%=data.CategoryId===4 ? "checked" : " " %>>Preman Kampung</option>
+            </select>
+            <div class="align-content-end col-auto">
           <button type="submit" class="btn btn-primary mb-3">Submit</button>
         </div>
     </form>

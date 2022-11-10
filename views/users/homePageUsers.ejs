@@ -49,15 +49,21 @@
             <h3><%= x.name %></h3>
             <a href="#" class="btn btn-primary">Open Category</a>
         </div>
+                <div class="row">
                 <% x.Courses.forEach(function(el){ %>
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
+                  <div class="col">
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
                           <h5 class="card-title"><%= el.name %></h5>
                           <p class="card-text">Description : <br><%= el.description %></p>
                           <p>Duration : <br><%= el.duration %></p>
                         </div>
                       </div>
+                      </div>
+                      </div>
                 <% }) %>
+                </div>
     </div>
     <% }) %>
 </div>

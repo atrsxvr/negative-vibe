@@ -102,7 +102,7 @@ class Controller {
     const { name } = req.body
     Category.create({ name })
     .then(function (_) {
-      res.redirect('/')
+      res.redirect('/admin/categories/')
     })
             .catch(function (err) {
                 res.send(err)
@@ -114,11 +114,13 @@ class Controller {
             }
             
             static handleAddCourse(req, res) {
-              const { name, description, duration, CategoryId} = req.body
+              const CategoryId = +req.params.categoryId
+              const { name, description, duration} = req.body
               console.log(req.body);
               Course.create({ name, description, duration, CategoryId})
               .then(function (_) {
-                res.redirect('/admin/courses')
+                console.log(CategoryId);
+                res.redirect(`/admin/categories/${CategoryId}`)
               })
               .catch(function (err) {
                 console.log(err);
@@ -128,11 +130,13 @@ class Controller {
             
             static formEditCourse(req, res) {
               const err = req.query.err
-              const reqId = +req.params.id
-              console.log({id: req.params.id})
+              const CategoryId = +req.params.categoryId
+              const reqId = +req.params.coursesId
+              console.log({id: req.params})
+              console.log(reqId, CategoryId);
               Course.findOne({ where: { id: reqId } })
               .then(function (data) {
-                res.render('admin/editCourse', { data, err })
+                res.render("admin/editCourse", { data, err })
               })
               .catch(function (err) {
                 res.send(err)
@@ -140,35 +144,41 @@ class Controller {
   }
   
   static handleEditCourse(req, res) {
-    const { name, description, duration, CategoryId} = req.body
-    const course = +req.params.id
-    console.log(req.body);
+    const { name, description, duration} = req.body
+    const course = +req.params.coursesId
+    const CategoryId = +req.params.categoryId
+    console.log(req.params, "<<<<<<<<<<<<<<<<<<<");
+    // console.log(req.body);
     Course.update({ name, description, duration, CategoryId},{
       where:{
         id: course
       }
     })
     .then(function (_) {
-      res.redirect('/admin/courses')
+      res.redirect(`/admin/categories/${CategoryId}`)
     })
     .catch(function (err) {
-      console.log(err);
+      // console.log(err);
       res.send(err)
     })
   }
   
   static deleteCourse(req, res) {
-    const CourseId = +req.params.id
+    const CourseId = +req.params.coursesId
+    const CategoryId = +req.params.categoryId
+    console.log("MMMMMMAAAAAAAASDDDDADAD");
+    console.log(req.params)
+    console.log(CourseId, CategoryId);
     Course.findByPk(CourseId)
     .then(function (data) {
       Course.destroy({
         where: { id: CourseId }
       })
-      return data
+      res.redirect(`/admin/categories/${CategoryId}`)
     })
-    .then(function (data) {
-      res.redirect(`/admin/courses`)
-    })
+    // .then(function (data) {
+    //   res.redirect(`/admin/categories/${CategoryId}`)
+    // })
     .catch(function (err) {
       res.send(err)
     })
@@ -184,6 +194,8 @@ class Controller {
     })
     .catch()
   }
+
+  
   
 }
 

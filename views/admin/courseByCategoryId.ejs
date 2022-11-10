@@ -9,8 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="/admin/courses/add"><button>Add Course</button></a>
-
+    <% data.Courses.forEach(function(el){ %>
+    <a href="/admin/categories/<%=el.CategoryId%>/courses/add"><button>Add Course</button></a>
+    <% }) %>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -43,7 +44,7 @@
                 </td>
               <td>
                     
-                    <a href="/admin/courses/<%= el.id %>/delete"><button type="button"
+                    <a href="/admin/categories/<%= el.CategoryId %>/<%= el.id %>/delete"><button type="button"
                         class="btn btn-outline-danger">Delete</button></a></td>
               
             </tr>

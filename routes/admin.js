@@ -8,8 +8,8 @@ const categoriesRoutes = require("./categories")
 router.get("/", Controller.showAdmin)
 
 
-router.use("/courses", coursesRoutes)
 router.use("/categories", categoriesRoutes)
+router.use("/courses", coursesRoutes)
 // router.get('/', Controller.showCourseData)
 
 // router.get('/add', Controller.formAddCourse)
