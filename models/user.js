@@ -1,8 +1,6 @@
-'use strict';
-const bcrypt = require('bcrypt')
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const bcrypt = require("bcrypt");
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,21 +10,51 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.Profile)
+      User.hasOne(models.Profile);
     }
   }
-  User.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+  User.init(
+    {
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Email harus diisi"
+          },
+          notNull: {
+            args: true,
+            msg: "Email harus diisi"
+          }
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            args: true,
+            msg: "Password harus diisi"
+          },
+          notEmpty: {
+            args: true,
+            msg: "Password harus diisi"
+          }
+        }
+      },
+      role: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "User",
+    }
+  );
   User.beforeCreate((instance, option) => {
-    let hashPassword = bcrypt.hashSync(instance.password, 8)
-    instance.password = hashPassword
-    instance.status = false
-  })
+    let saltPassword = bcrypt.genSaltSync(5)
+    let hashPassword = bcrypt.hashSync(instance.password, saltPassword);
+    instance.password = hashPassword;
+    // instance.status = false;
+  });
   return User;
 };

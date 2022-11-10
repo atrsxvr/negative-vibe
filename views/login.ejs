@@ -34,13 +34,13 @@
             />
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form>
+            <form action="/login" method="post">
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <input
                   type="email"
-                  id="form1Example13"
                   class="form-control form-control-lg"
+                  name="email"
                 />
                 <label class="form-label" for="form1Example13"
                   >Email address</label
@@ -51,8 +51,8 @@
               <div class="form-outline mb-4">
                 <input
                   type="password"
-                  id="form1Example23"
                   class="form-control form-control-lg"
+                  name="password"
                 />
                 <label class="form-label" for="form1Example23">Password</label>
               </div>
@@ -65,7 +65,7 @@
                   Sign in
                 </button>
               </div>
-              <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
+              <p>Don't have an account? <a href="/register" class="link-info">Register here</a></p>
             </form>
           </div>
         </div>
