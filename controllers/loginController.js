@@ -17,7 +17,7 @@ class Controller {
           if (user.role === "admin") {
             res.redirect("/admin"); //redirect admin page
           } else {
-            res.redirect("/user"); // redirect user page
+            res.redirect(`/user/${id}`); // redirect user page
           }
         } else {
           res.send(err); // email & password salah

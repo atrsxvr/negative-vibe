@@ -21,6 +21,7 @@ router.use(function (req, res, next) {
     next();
   }
 });
+router.get('/logout', Controller.logOut)
 
 router.use("/admin", adminRoutes);
 router.use("/user", userRoutes);
